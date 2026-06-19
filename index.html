@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 故事与探索</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f3faf8;
+      color: #1f2e2b;
+      line-height: 1.7;
+      padding: 2rem 1.2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 780px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .intro-line {
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      border-left: 4px solid #3b8b7c;
+      padding-left: 1.2rem;
+      margin: 2rem 0 1.5rem;
+      color: #2a5e55;
+      font-weight: 350;
+    }
+
+    .story-block {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2.4rem;
+      box-shadow: 0 8px 24px rgba(56, 125, 110, 0.07);
+      transition: box-shadow 0.2s;
+    }
+
+    .story-block:hover {
+      box-shadow: 0 12px 30px rgba(56, 125, 110, 0.12);
+    }
+
+    .story-block h2 {
+      font-size: 1.5rem;
+      font-weight: 450;
+      color: #1d4d44;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid #e0f0eb;
+      padding-bottom: 0.5rem;
+    }
+
+    .story-block p {
+      margin-bottom: 1rem;
+    }
+
+    .story-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0 0.8rem;
+    }
+
+    .feature-card {
+      background: #f2faf7;
+      border-radius: 20px;
+      padding: 1.2rem 1rem;
+      border: 1px solid #d2ebe3;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      background: #e5f5ef;
+      border-color: #9acfc0;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1f5b4e;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-card p {
+      font-size: 0.92rem;
+      color: #3b5f56;
+      margin: 0;
+    }
+
+    .closing {
+      text-align: center;
+      padding: 1.8rem 0 2.2rem;
+      border-top: 1px solid #d0e5de;
+      margin-top: 1.2rem;
+    }
+
+    .closing p {
+      font-size: 1rem;
+      color: #2d6055;
+      max-width: 520px;
+      margin: 0 auto 0.7rem;
+    }
+
+    .link-soft {
+      color: #1c6d5b;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1.5px solid #9acfc0;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .link-soft:hover {
+      color: #0f4f41;
+      border-bottom-color: #4e9e89;
+    }
+
+    .faq-mini {
+      background: #e8f6f1;
+      border-radius: 24px;
+      padding: 1.6rem 1.6rem 1.8rem;
+      margin: 2rem 0 1.2rem;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.2rem;
+      font-weight: 450;
+      color: #225649;
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #c7e2d9;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 500;
+      color: #1e5548;
+    }
+
+    .faq-answer {
+      font-size: 0.92rem;
+      color: #3a6157;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+
+      .story-block {
+        padding: 1.6rem 1.2rem;
+        border-radius: 22px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .intro-line {
+        font-size: 1.05rem;
+        padding-left: 0.9rem;
+        margin: 1.2rem 0 1rem;
+      }
+
+      .faq-mini {
+        padding: 1.2rem 1rem;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .story-block h2 {
+        font-size: 1.3rem;
+      }
+
+      .feature-card h3 {
+        font-size: 0.95rem;
+      }
+
+      .closing p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="intro-line">
+      有些体验，是从一个词开始的。
+    </div>
+
+    <div class="story-block">
+      <h2>当「爱」成为动词</h2>
+      <p>
+        很多年前，有人问：什么样的游戏值得反复停留？答案其实很安静——不是画面有多炫，而是你在里面找到了属于自己的节奏。后来渐渐明白，那份投入本身，就是一种温和的喜欢。
+      </p>
+      <p>
+        从街机厅的旧摇杆，到掌机屏幕的微光，再到手机里那些随时可打开的小世界，每一代人都有自己的承载方式。这些故事彼此交错，构成了一个更辽阔的合集——我们称之为<a href="https://cnzh-aiyouxi.com.cn" class="link-soft">爱游戏</a>。
+      </p>
+    </div>
+
+    <div class="story-block">
+      <h2>一些微小的特质</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>不赶时间</h3>
+          <p>可随时暂停，也可随时继续。没有倒计时的压迫，只有自己决定的节奏。</p>
+        </div>
+        <div class="feature-card">
+          <h3>安静叙事</h3>
+          <p>文字与画面留白，给想象留出位置。很多感受不是被告诉的，而是自己发现的。</p>
+        </div>
+        <div class="feature-card">
+          <h3>低门槛，深探索</h3>
+          <p>上手简单，但内核可以有厚度。不同的人能找到不同的深度。</p>
+        </div>
+        <div class="feature-card">
+          <h3>社群如庭院</h3>
+          <p>不吵闹，但有人。交流是分享心得，而不是比拼排名。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-block">
+      <h2>一个常见的午后</h2>
+      <p>
+        窗外有风，桌上放着半杯温水。你打开一个熟悉的界面，没有紧急任务，没有催促红点。你只是慢慢选择、阅读、移动，偶尔停下来想一想。这种状态，不是逃避，而是一种主动的安宁。
+      </p>
+      <p>
+        或许这就是为什么，许多人在忙碌一天后，仍愿意留一点时间给自己。而那个陪伴的角落，刚好就叫<a href="https://cnzh-aiyouxi.com.cn" class="link-soft">爱游戏</a>。
+      </p>
+    </div>
+
+    <div class="faq-mini">
+      <h3>偶尔有人问起</h3>
+      <div class="faq-item">
+        <div class="faq-question">这里适合完全没接触过的人吗？</div>
+        <div class="faq-answer">适合。很多内容从零开始，不预设经验，只在意是否愿意尝试。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">会不会很复杂？需要下载很多东西？</div>
+        <div class="faq-answer">不复杂。大部分时候打开浏览器就够，轻量，直接。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">「爱游戏」这个名字，是不是太直白了？</div>
+        <div class="faq-answer">可能吧。但简单的东西往往最不容易被误解。</div>
+      </div>
+    </div>
+
+    <div class="closing">
+      <p>
+        没有什么宏大宣言。只是一些安静的角落，一些值得慢慢对待的互动。<br>
+        如果你也喜欢这种节奏，不妨从<a href="https://cnzh-aiyouxi.com.cn" class="link-soft">爱游戏</a>开始，到处看看。
+      </p>
+      <p style="font-size: 0.85rem; color: #588577; margin-top: 1.2rem; opacity: 0.7;">
+        ——— 一个关于停留与沉浸的小小记录 ———
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
