@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云开体育 · 资料索引库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #faf7f2;
+            color: #2c2b28;
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Times New Roman", Georgia, serif;
+            line-height: 1.75;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page {
+            max-width: 820px;
+            width: 100%;
+        }
+        /* 标题区 */
+        .archive-header {
+            border-bottom: 1px solid #d9d2c5;
+            padding-bottom: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .archive-header h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            color: #3e3a33;
+            margin-bottom: 0.3rem;
+        }
+        .archive-header .sub {
+            font-size: 0.95rem;
+            color: #7c766b;
+            border-left: 4px solid #b8a99a;
+            padding-left: 1rem;
+            margin-top: 0.2rem;
+        }
+        /* 说明卡片 */
+        .note-card {
+            background: #f1ece4;
+            padding: 1.6rem 2rem;
+            border-radius: 0 12px 12px 12px;
+            margin: 1.8rem 0 2.2rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            border-left: 6px solid #b09a88;
+        }
+        .note-card p {
+            margin-bottom: 0.6rem;
+        }
+        .note-card p:last-child {
+            margin-bottom: 0;
+        }
+        .note-card .label {
+            display: inline-block;
+            background: #d9cfbf;
+            color: #2f2b25;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.8rem;
+        }
+        /* 目录格 */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 2rem 0 2rem 0;
+        }
+        .index-item {
+            background: #ffffffdd;
+            backdrop-filter: blur(0.5px);
+            padding: 1.1rem 1.2rem;
+            border-radius: 6px;
+            border: 1px solid #e6ddd0;
+            transition: all 0.15s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .index-item:hover {
+            background: #f6f0e7;
+            border-color: #b7a793;
+            box-shadow: 0 3px 8px rgba(82, 67, 50, 0.04);
+        }
+        .index-item h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #3b362e;
+            margin-bottom: 0.2rem;
+            border-bottom: 1px dashed #d3cabb;
+            padding-bottom: 0.25rem;
+        }
+        .index-item p {
+            font-size: 0.88rem;
+            color: #5a5449;
+            margin-top: 0.4rem;
+            line-height: 1.5;
+        }
+        .index-item .tag {
+            display: inline-block;
+            background: #e6ddd0;
+            color: #3a352c;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            margin-top: 0.4rem;
+        }
+        /* 引用块 */
+        .inset-quote {
+            margin: 2rem 0 2.2rem 0;
+            padding: 1.4rem 2rem;
+            background: #f3efe7;
+            border-radius: 20px 4px 20px 4px;
+            position: relative;
+        }
+        .inset-quote::before {
+            content: "📎";
+            position: absolute;
+            left: -0.3rem;
+            top: -0.6rem;
+            font-size: 1.4rem;
+            opacity: 0.6;
+        }
+        .inset-quote p {
+            font-style: normal;
+            color: #3f3a32;
+            margin-bottom: 0.4rem;
+        }
+        .inset-quote .source {
+            font-size: 0.85rem;
+            color: #7d7467;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+        /* 提示框 */
+        .tip-box {
+            background: #e9e2d6;
+            border: 1px solid #d0c3b1;
+            padding: 1.2rem 1.6rem;
+            border-radius: 30px 0 30px 0;
+            margin: 1.8rem 0 2rem 0;
+            font-size: 0.96rem;
+        }
+        .tip-box strong {
+            color: #3e362b;
+            font-weight: 500;
+        }
+        /* FAQ 摘要 */
+        .faq-mini {
+            margin: 2.2rem 0 1.8rem 0;
+        }
+        .faq-mini details {
+            background: #f7f2ea;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 0.6rem;
+            border: 1px solid #ddd5c7;
+            transition: 0.1s;
+        }
+        .faq-mini details[open] {
+            background: #f0e9df;
+        }
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #3e372e;
+            padding: 0.1rem 0;
+            list-style: "▸ ";
+        }
+        .faq-mini details[open] summary {
+            list-style: "▾ ";
+        }
+        .faq-mini .answer {
+            padding: 0.5rem 0 0.2rem 0.6rem;
+            color: #4e483d;
+            font-size: 0.92rem;
+            border-left: 2px solid #b7a48b;
+            margin-top: 0.3rem;
+        }
+        /* 底部信息区 */
+        .info-footer {
+            border-top: 1px solid #ddd2c2;
+            padding-top: 1.5rem;
+            margin-top: 2.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #615b50;
+        }
+        .info-footer a {
+            color: #5f5544;
+            text-decoration: underline 1px dotted #8f826e;
+            text-underline-offset: 3px;
+        }
+        .info-footer a:hover {
+            color: #1f1a13;
+            text-decoration: underline solid 1px;
+        }
+        .footer-note {
+            background: #eee8df;
+            padding: 0.1rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        @media (max-width: 560px) {
+            body { padding: 1.2rem 0.8rem; }
+            .archive-header h1 { font-size: 1.7rem; }
+            .index-grid { grid-template-columns: 1fr; }
+            .note-card { padding: 1.2rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="archive-header">
+        <h1>信息归档 · 云开体育</h1>
+        <div class="sub">从资料整理与索引视角，梳理基础内容层</div>
+    </header>
+
+    <!-- 简短说明区：入口感 -->
+    <div class="note-card">
+        <span class="label">📋 说明</span>
+        <p>本页为围绕「云开体育」搭建的轻量知识库入口，侧重素材归类与信息来源提示。内容保持克制，不做延伸解读，仅汇总已公开的常规描述。</p>
+        <p>以下目录格、引用块与提示区均取自不同角度，便于快速定位感兴趣的方向。如需回到主站，句子中嵌入的 <a href="https://zh-cn-yunkaisports.com">云开体育</a> 可直接跳转。</p>
+    </div>
+
+    <!-- 目录感布局：四个格子 -->
+    <div class="index-grid">
+        <div class="index-item">
+            <h3>平台定位</h3>
+            <p>基于网络服务的体育内容聚合方向，提供赛事资讯、数据浏览等常规功能模块。</p>
+            <span class="tag">基础</span>
+        </div>
+        <div class="index-item">
+            <h3>栏目结构</h3>
+            <p>首页、赛事中心、排行榜、资料库、社区动态等分区，各模块独立索引。</p>
+            <span class="tag">导航</span>
+        </div>
+        <div class="index-item">
+            <h3>信息类型</h3>
+            <p>文字快讯、图文专题、统计图表、用户讨论等，内容来源均标注参考域。</p>
+            <span class="tag">格式</span>
+        </div>
+        <div class="index-item">
+            <h3>检索提示</h3>
+            <p>可利用站内筛选与时间排序缩小范围，部分板块需登录后浏览完整内容。</p>
+            <span class="tag">使用</span>
+        </div>
+    </div>
+
+    <!-- 引用块：叙述感 -->
+    <div class="inset-quote">
+        <p>“资料整理的意义不在于收集全部信息，而在于知道信息存放在哪里、以何种逻辑组织。云开体育的内容分布遵循常规目录结构，从联赛到专项均有独立页面，更新节奏稳定。”</p>
+        <p class="source">—— 索引笔记 · 2025</p>
+    </div>
+
+    <!-- 提示区 -->
+    <div class="tip-box">
+        <strong>📌 提示</strong> 部分历史赛事页面可能采用静态归档格式，数据截止日期见页脚标注。实时比分与动态数据建议直接查阅对应比赛日页面。若需检索特定队伍或赛季，可优先使用站内搜索框。
+    </div>
+
+    <!-- 相关信息区：FAQ摘要 -->
+    <div class="faq-mini">
+        <details>
+            <summary>页面信息多久更新一次？</summary>
+            <div class="answer">主要赛事期间内容更新较为频繁，常规时段保持每日或每周轮换。具体页面底部常附有最后修改时间戳。</div>
+        </details>
+        <details>
+            <summary>是否需要注册才能阅读？</summary>
+            <div class="answer">大部分资讯类页面可直接浏览，部分互动或收藏功能需注册账户。注册流程为标准邮箱或手机验证。</div>
+        </details>
+        <details>
+            <summary>资料索引库与主站是什么关系？</summary>
+            <div class="answer">本页为独立整理的介绍性索引页，主站仍是完整的服务平台。更全面的内容可前往 <a href="https://zh-cn-yunkaisports.com">云开体育</a> 浏览。</div>
+        </details>
+    </div>
+
+    <!-- 底部信息区 -->
+    <div class="info-footer">
+        <span>内容方向：知识库入口 · 目录感布局</span>
+        <span class="footer-note">📂 索引版本 · 叙述向</span>
+        <span><a href="https://zh-cn-yunkaisports.com">云开体育</a> · 资料侧面</span>
+    </div>
+
+    <!-- 末尾自然再出现一次链接，不显刻意 -->
+    <p style="margin-top: 1.8rem; font-size: 0.85rem; color: #7b7162; text-align: center; border-top: 1px dashed #ddd2c2; padding-top: 1.2rem;">
+        本索引仅作信息整理参考，实际内容以 <a href="https://zh-cn-yunkaisports.com">云开体育</a> 站内发布为准。
+    </p>
+
+</div>
+</body>
+</html>
